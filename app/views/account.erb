@@ -1,3 +1,9 @@
-<h1>Welcome To Your Recipes <%=@user.username%>!</h1>
-
+<h1>Hello <%=@user.username%>!</h1>
+<h2>Your Recipes</h2>
+<ul>
+    <%@user.recipes.each do |recipe|%>
+    <li><%=recipe.name%></li>
+    <% end %>
+</ul>
+<p><a href="/new">Make A New Recipe</a></p>
 <p><a href="/logout">Log Out</a></p>

@@ -44,6 +44,7 @@ class ApplicationController < Sinatra::Base
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      binding.pry
       redirect "/account"
     else
       erb :login
@@ -53,6 +54,27 @@ class ApplicationController < Sinatra::Base
   get "/logout" do
     session.clear
     redirect "/"
+  end
+
+  get "/new" do
+    erb :new
+  end
+
+  post "/recipes" do
+    binding.pry
+    @recipe = Recipe.create(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], 
+                            tags: params[:tags], link: params[:link], user_id: session[:user_id])
+    redirect "/account"
+  end
+
+  get '/recipes/:id/edit' do
+    @recipes = Recipe.find_by(user_id: session[:user_id])
+    erb :edit
+  end
+
+  get '/recipes/:id' do
+    @recipe = Recipe.find(params[:id])
+    erb :show
   end
 
 end
