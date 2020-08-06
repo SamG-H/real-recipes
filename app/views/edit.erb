@@ -8,19 +8,20 @@
     <br>
     
     <label>Cooking Time:</label>
-    <input type="text" name="cook_time" value="<%=@recipe.cook_time%>">>
+    <input type="text" name="cook_time" value="<%=@recipe.cook_time%>">
     <br>
     
     <label>Ingredients:</label>
-    <input type="text" name="ingredients" value="<%=@recipe.ingredients%>">>
+    <input type="text" name="ingredients" value="<%=@recipe.ingredients%>">
     <br>
 
     <label>Tags:</label>
-    <input type="text" name="tags">
+    <input type="text" name="tags" value="<%=@recipe.tags%>">
     <br>
 
     <label>Link to Recipe:</label>
-    <input type="text" name="link">
+    <input type="text" name="link" value="<%=@recipe.link%>">
     <br>
 
-    <input type="submit" value="Add Recipe">
+    <input type="submit" value="Update Recipe">
+</form>

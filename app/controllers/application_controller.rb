@@ -23,14 +23,14 @@ class ApplicationController < Sinatra::Base
     else
       user = User.create(username: params[:username], password: params[:password])
       session[:user_id] = user.id
-      redirect "/account"
+      redirect "/recipes"
     end
   end
 
-  get "/account" do
+  get "/recipes" do
     if session[:user_id]
       @user = User.find(session[:user_id])
-      erb :account
+      erb :recipes
     else
       redirect "/login"
     end
@@ -44,8 +44,7 @@ class ApplicationController < Sinatra::Base
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      binding.pry
-      redirect "/account"
+      redirect "/recipes"
     else
       erb :login
     end
@@ -56,25 +55,59 @@ class ApplicationController < Sinatra::Base
     redirect "/"
   end
 
-  get "/new" do
-    erb :new
+  get "/recipes/new" do
+    if logged_in?
+      erb :new
+    else
+      redirect "/login"
+    end
   end
 
   post "/recipes" do
-    binding.pry
     @recipe = Recipe.create(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], 
                             tags: params[:tags], link: params[:link], user_id: session[:user_id])
-    redirect "/account"
+    redirect "/recipes"
   end
 
   get '/recipes/:id/edit' do
-    @recipes = Recipe.find_by(user_id: session[:user_id])
-    erb :edit
+    if logged_in?
+      @recipe = Recipe.find(params[:id])
+      erb :edit
+    else
+      redirect "/login"
+    end
   end
 
   get '/recipes/:id' do
+    if logged_in?
+      @recipe = Recipe.find(params[:id])
+      erb :show
+    else
+      redirect "/login"
+    end
+  end
+
+  patch '/recipes/:id' do
     @recipe = Recipe.find(params[:id])
-    erb :show
+    @recipe.update(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], 
+    tags: params[:tags], link: params[:link])
+    redirect "/recipes/#{@recipe.id}"
+  end
+
+  delete '/recipes/:id' do
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
+    redirect to '/recipes'
+  end
+
+  helpers do
+    def logged_in?
+      !!session[:user_id]
+    end
+
+    def current_user
+      User.find(session[:user_id])
+    end
   end
 
 end
