@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+
+    <title>Real Recipes</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styles.css" />
+  </head>
+    <body>
+    <div class="navbar">
+      <ul class="navbar">
+        <%if !logged_in? %>
+          <li style="float:right"><a href="/login">Login</a></li>
+        <% else %>
+          <li style="float:right"><a href="/logout">Logout</a></li>
+          <li><a href="/recipes">Recipes</a></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="wrapper">
+    
+
+        <%= yield %>
+
+      <footer class="branding">
+        <small>&copy; 2020 <strong>Real Recipes</strong></small>
+      </footer>
+    </div>
+  </body>
+</html>
