@@ -81,7 +81,11 @@ class ApplicationController < Sinatra::Base
   get '/recipes/:id' do
     if logged_in?
       @recipe = Recipe.find(params[:id])
-      erb :show
+      if @recipe.user_id == current_user.id
+        erb :show
+      else
+        erb :uhoh
+      end
     else
       redirect "/login"
     end
