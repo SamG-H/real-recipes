@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200806174312) do
+ActiveRecord::Schema.define(version: 20200806183845) do
 
   create_table "recipes", force: :cascade do |t|
-    t.string "name"
-    t.string "cook_time"
-    t.string "ingredients"
-    t.string "tags"
-    t.string "link"
+    t.string  "name"
+    t.string  "cook_time"
+    t.string  "ingredients"
+    t.string  "tags"
+    t.string  "link"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
