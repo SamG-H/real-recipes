@@ -30,9 +30,14 @@
     padding: 2.25%; /* 18px / 800px */
     width: 200%;
     height: 50%;
+    border-left: 2px solid #F0C7C4;
+    border-top: 2px solid #F0C7C4;
+    border-bottom: 2px solid #93B12D;
+    border-right: 2px solid #93B12D;
   }
 
   h1 {
+    text-align: center;
     font-size: 36px;
     line-height: 54px;
   }
@@ -54,37 +59,39 @@
     font-size: 16px;
   }
 
-  .centered {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-  }
-
   .signup-button {
     border-radius: 25px;
-    background-color: tomato;
+    background-color: #F0C7C4;
     color: black;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 20px;
     margin: 4px 2px;
     cursor: pointer;
   }
 
   .login-button {
     border-radius: 25px;
-    background-color: #80F05D;
+    background-color: #93B12D;
     color: black;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 20px;
     margin: 4px 2px;
     cursor: pointer;
+  }
+
+  .login-button li a:hover {
+    border: 1px solid black;
+  }
+
+  .signup-button li a:hover {
+    border: 1px solid black;
+    background-color: blue;
   }
 
   .main {
@@ -119,10 +126,6 @@
   .navbar li a:hover:not(.active) {
     background-color: #111;
   }
-  
-  .navbarlogin {
-    float: right;
-  }
 
   .sidebar {
     background: #eee;
@@ -133,7 +136,6 @@
   }
 
   .sidebar ul {
-    color: red;
     font-size: 14px;
   }
 
