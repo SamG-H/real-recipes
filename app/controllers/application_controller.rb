@@ -87,7 +87,7 @@ class ApplicationController < Sinatra::Base
 
   get '/recipes/:id' do
     if logged_in?
-      binding.pry
+      @recipe = Recipe.find(params[:id])
       if Recipe.last.id < params[:id].to_i
         erb :uhoh
       elsif @recipe.user_id == current_user.id
