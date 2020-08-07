@@ -72,7 +72,7 @@ class ApplicationController < Sinatra::Base
 
   post "/recipes" do
     @recipe = Recipe.create(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], 
-                            tags: params[:tags], link: params[:link], user_id: session[:user_id])
+                            tags: params[:tags], link: params[:link], color: params[:color], user_id: session[:user_id])
     redirect "/recipes"
   end
 
@@ -101,7 +101,7 @@ class ApplicationController < Sinatra::Base
   patch '/recipes/:id' do
     @recipe = Recipe.find(params[:id])
     @recipe.update(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], 
-    tags: params[:tags], link: params[:link])
+    tags: params[:tags], link: params[:link], color: params[:color])
     redirect "/recipes/#{@recipe.id}"
   end
 

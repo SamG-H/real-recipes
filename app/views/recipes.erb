@@ -2,7 +2,7 @@
 <h2>Your Recipes</h2>
 <div class="recipe-grid-wrapper">
     <%@user.recipes.each do |recipe|%>
-        <a href="/recipes/<%=recipe.id%>" class="recipe" style="background-color: yellow"><div><%=recipe.name%></div></a>
+        <a href="/recipes/<%=recipe.id%>" class="recipe" style="background-color: <%=recipe.color if recipe.color%>"><%=recipe.name%></a>
     <% end %>
 </div>
 <br>
