@@ -22,10 +22,6 @@
 
   .wrapper {
     position: relative;
-    grid-template-columns: 100px 50px 100px;
-    grid-template-rows: 80px auto 80px;
-    column-gap: 10px;
-    row-gap: 15px;
     text-align: center;
     background: #fff;
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
@@ -37,6 +33,22 @@
     width: 200%;
     height: 70%;
     border: 2px solid #1B212D;
+  }
+
+  .recipe-grid-wrapper {
+    color: black;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .recipe {
+    padding: 20px;
+    border: 2px solid #1B212D;
+    display: grid;
+    text-decoration: none;
+    cursor: pointer;
   }
 
   h1 {
@@ -75,7 +87,7 @@
     border: 1px solid #DEB742;
   }
 
-  a.new-recipe-button:hover {
+  .new-recipe-button:hover {
     border: 1px solid black;
   }
 
