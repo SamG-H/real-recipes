@@ -18,7 +18,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/signup" do
-    if params[:username] == "" || params[:password] == ""
+    if (params[:username] == "" || params[:password] == "")
       @error = "You must type in a username and a password"
       erb :signup
     else
@@ -34,7 +34,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/recipes" do
-    if session[:user_id]
+    if logged_in?
       @user = User.find(session[:user_id])
       erb :recipes
     else
@@ -87,8 +87,11 @@ class ApplicationController < Sinatra::Base
 
   get '/recipes/:id' do
     if logged_in?
-      @recipe = Recipe.find(params[:id])
-      if @recipe.user_id == current_user.id
+      binding.pry
+      if Recipe.last.id < params[:id].to_i
+        erb :uhoh
+      elsif @recipe.user_id == current_user.id
+        @recipe = Recipe.find(params[:id])
         erb :show
       else
         erb :uhoh

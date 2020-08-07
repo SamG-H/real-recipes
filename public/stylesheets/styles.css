@@ -33,10 +33,12 @@
     width: 200%;
     height: 70%;
     border: 2px solid #1B212D;
+    display: inline-block;
+    overflow: auto;
   }
 
   .recipe-grid-wrapper {
-    display: grid;
+    display: inline-grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 10px;
@@ -46,7 +48,7 @@
     color: black;
     padding: 20px;
     border: 2px solid #1B212D;
-    display: grid;
+    display: inline-grid;
     text-decoration: none;
   }
 
