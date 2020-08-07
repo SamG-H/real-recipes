@@ -52,6 +52,7 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = user.id
       redirect "/recipes"
     else
+      @error = "Incorrect username or password"
       erb :login
     end
   end

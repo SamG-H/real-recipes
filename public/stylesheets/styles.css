@@ -21,6 +21,7 @@
   }
 
   .wrapper {
+    position: relative;
     grid-template-columns: 100px 50px 100px;
     grid-template-rows: 80px auto 80px;
     column-gap: 10px;
@@ -34,7 +35,7 @@
     max-width: 1000px;
     padding: 2.25%; /* 18px / 800px */
     width: 200%;
-    height: 50%;
+    height: 70%;
     border: 2px solid #1B212D;
   }
 
@@ -60,7 +61,25 @@
     font-size: 16px;
   }
 
-  a.signup-button {
+  .new-recipe-button {
+    border-radius: 10px;
+    background-color: #FE858F;
+    color: black;
+    padding: 9px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: 1px solid #FE858F;
+  }
+
+  a.new-recipe-button:hover {
+    border: 1px solid black;
+  }
+
+  .signup-button {
     border-radius: 10px;
     background-color: #FD9226;
     color: black;
@@ -74,7 +93,7 @@
     border: 1px solid #FD9226;
   }
 
-  a.login-button {
+  .login-button {
     border-radius: 10px;
     background-color: #02A437;
     color: black;
@@ -150,14 +169,13 @@
   }
 
   footer.branding {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-top: solid 1px black;
     width: 100%;
-    position: relative;
+    position: absolute;
     left: 0;
     bottom: 0;
-    top: 30%;
-    border-top: 2px solid #ccc;
-    margin-top: 20px;
-    padding-top: 20px;
   }
 }
 

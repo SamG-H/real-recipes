@@ -1,6 +1,7 @@
-<h2>Log In To Your Account</h2>
+<h1>Log In To Your Account</h1>
+<h2 class="error"><%=@error%></h2>
 <form action="/login" method="POST">
-    <input type="text" name="username" placeholder="Username:">
-    <input type="password" name="password" placeholder="Password:">
-    <input type="submit" value="Log In">
+    <input type="text" name="username" placeholder="Username:"><br>
+    <input type="password" name="password" placeholder="Password:"><br>
+    <input type="submit" value="Log In" class="new-recipe-button">
 </form>
