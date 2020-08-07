@@ -1,3 +1,4 @@
+<div style="background-color: <%=@recipe.color%>" class="recipe">
 <h1><%=@recipe.name%></h1>
 <p>Cooking Time: <%=@recipe.cook_time%></p>
 <p>Ingredients: <%=@recipe.ingredients%></p>
@@ -8,3 +9,4 @@
     <input type="submit" value="Delete Recipe" class="new-recipe-button">
     <input id="hidden" type="hidden" name="_method" value="DELETE">
 </form>
+</div>

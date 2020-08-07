@@ -24,13 +24,13 @@
     <br>
 
     <label>Background Color</label><br>
-    <input type="radio" name="color" id="red" value="red">Red</input><br>
-    <input type="radio" name="color" id="orange" value="orange">Orange</input><br>
-    <input type="radio" name="color" id="yellow" value="yellow">Yellow</input><br>
-    <input type="radio" name="color" id="green" value="green">Green</input><br>
-    <input type="radio" name="color" id="blue" value="blue">Blue</input><br>
-    <input type="radio" name="color" id="indigo" value="indigo">Indigo</input><br>
-    <input type="radio" name="color" id="violet" value="violet">Violet</input><bbr>
+    <input type="radio" name="color" id="red" value="red" <%='checked' if @recipe.color == 'red'%>>Red</input><br>
+    <input type="radio" name="color" id="orange" value="orange" <%='checked' if @recipe.color == 'orange'%>>Orange</input><br>
+    <input type="radio" name="color" id="yellow" value="yellow" <%='checked' if @recipe.color == 'yellow'%>>Yellow</input><br>
+    <input type="radio" name="color" id="green" value="green" <%='checked' if @recipe.color == 'green'%>>Green</input><br>
+    <input type="radio" name="color" id="blue" value="blue" <%='checked' if @recipe.color == 'blue'%>>Blue</input><br>
+    <input type="radio" name="color" id="indigo" value="indigo" <%='checked' if @recipe.color == 'indigo'%>>Indigo</input><br>
+    <input type="radio" name="color" id="violet" value="violet" <%='checked' if @recipe.color == 'violet'%>>Violet</input><bbr>
     <br>
 
     <input type="submit" value="Update Recipe">
