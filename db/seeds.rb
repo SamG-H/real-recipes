@@ -1,0 +1,13 @@
+daemon = User.create(username: "daemon", password: "yumfood")
+Recipe.create(name: "Samosa", cook_time: "60 minutes", ingredients: "flour, veggies, oil", tags: "indian, vegan, snack", link: "https://www.connoisseurusveg.com/baked-vegan-samosas/", color: "orange", user: daemon)
+Recipe.create(name: "Curry", cook_time: "45 minutes", ingredients: "rice, veggies, lentils, oil", tags: "indian, vegan, dinner", link: "https://www.finecooking.com/recipe/south-indian-style-vegetable-curry", color: "red", user: daemon)
+Recipe.create(name: "Yumm Bowl", cook_time: "55 minutes", ingredients: "rice, veggies, beans, salsa, yumm sauce", tags: "restaurant, vegan, dinner", link: "https://www.cafeyumm.com/order", color: "yellow", user: daemon)
+Recipe.create(name: "Mac 'n Nooch", cook_time: "90 minutes", ingredients: "noodles, potatoes, carrots, nutrional yeast", tags: "vegan, dinner", link: "https://tasty.co/recipe/mac-n-cheese", color: "yellow", user: daemon)
+Recipe.create(name: "Blueberry Pancakes", cook_time: "20 minutes", ingredients: "flour, cashew milk, baking soda, blueberries", tags: "vegan, breakfast", link: "https://choosingchia.com/vegan-blueberry-pancakes/", color: "blue", user: daemon)
+Recipe.create(name: "Hibiscus Donut", cook_time: "12 minutes", ingredients: "flour, cocoa powder, baking soda, baking soda, hibiscus, powdered sugar", tags: "vegan, dessert", link: "https://www.vitacost.com/blog/vegan-baked-chocolate-donut-recipe/", color: "violet", user: daemon)
+Recipe.create(name: "Grape Salad", cook_time: "0 minutes", ingredients: "grapes, lettuce", tags: "vegan, snack", color: "indigo", user: daemon)
+
+zita = User.create(username: "zita", password: "123eat")
+Recipe.create(name: "Curry", cook_time: "45 minutes", ingredients: "rice, veggies, lentils, oil", tags: "indian, vegan, dinner", link: "https://www.finecooking.com/recipe/south-indian-style-vegetable-curry", color: "red", user: zita)
+Recipe.create(name: "Bean Buger", user: zita, color: "yellow ")
+Recipe.create(name: "Green Machine", cook_time: "10 minutes", ingredients: "veggies", tags: "smoothie", color: "green", user: zita)
