@@ -19,11 +19,17 @@ class ApplicationController < Sinatra::Base
 
   post "/signup" do
     if params[:username] == "" || params[:password] == ""
+      @error = "You must type in a username and a password"
       erb :signup
     else
-      user = User.create(username: params[:username], password: params[:password])
-      session[:user_id] = user.id
-      redirect "/recipes"
+      if User.find_by(username: params[:username])
+        @error = "Username taken"
+        erb :signup
+      else
+        user = User.create(username: params[:username], password: params[:password])
+        session[:user_id] = user.id
+        redirect "/recipes"
+      end
     end
   end
 

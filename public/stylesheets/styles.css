@@ -35,10 +35,7 @@
     padding: 2.25%; /* 18px / 800px */
     width: 200%;
     height: 50%;
-    border-left: 2px solid #F0C7C4;
-    border-top: 2px solid #F0C7C4;
-    border-bottom: 2px solid #93B12D;
-    border-right: 2px solid #93B12D;
+    border: 2px solid #1B212D;
   }
 
   h1 {
@@ -64,7 +61,7 @@
   }
 
   a.signup-button {
-    border-radius: 25px;
+    border-radius: 10px;
     background-color: #FD9226;
     color: black;
     padding: 15px 32px;
@@ -74,10 +71,11 @@
     font-size: 20px;
     margin: 4px 2px;
     cursor: pointer;
+    border: 1px solid #FD9226;
   }
 
   a.login-button {
-    border-radius: 25px;
+    border-radius: 10px;
     background-color: #02A437;
     color: black;
     padding: 15px 32px;
@@ -87,6 +85,7 @@
     font-size: 20px;
     margin: 4px 2px;
     cursor: pointer;
+    border: 1px solid #02A437;
   }
 
   a.login-button:hover {
@@ -95,6 +94,10 @@
 
   a.signup-button:hover {
     border: 1px solid black;
+  }
+
+  .error {
+    color: red;
   }
 
   .main {
@@ -147,6 +150,11 @@
   }
 
   footer.branding {
+    width: 100%;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    top: 30%;
     border-top: 2px solid #ccc;
     margin-top: 20px;
     padding-top: 20px;
