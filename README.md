@@ -1,6 +1,6 @@
 # Real Recipes
 ### A web app that allows users to sign up for an account and create/read/update/view as many recipes as they want. 
-    Recipes can have names, cooking times, ingredients, tags, and a link to another website.
+Recipes can have names, cooking times, ingredients, tags, and a link to another website.
 ## Installation
     1. Clone this repo
     2. $ bundle install
