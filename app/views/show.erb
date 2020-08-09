@@ -4,9 +4,9 @@
 <p>Ingredients: <%=@recipe.ingredients%></p>
 <p>Tags: <%=@recipe.tags%></p>
 <p>Link to Recipe: <a href="<%=@recipe.link%>" target="_blank"><%=@recipe.link%></a></p>
-<p><a href="/recipes/<%=@recipe.id%>/edit" class="new-recipe-button">Edit Recipe</a></p>
+<p><a href="/recipes/<%=@recipe.id%>/edit" class="yellow-button">Edit Recipe</a></p>
 <form method="POST" action="/recipes/<%=@recipe.id%>">
-    <input type="submit" value="Delete Recipe" class="new-recipe-button">
+    <input type="submit" value="Delete Recipe" class="yellow-button">
     <input id="hidden" type="hidden" name="_method" value="DELETE">
 </form>
 </div>
