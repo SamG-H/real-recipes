@@ -24,11 +24,15 @@ class RecipesController < ApplicationController
   end
 
   get '/recipes/:id/edit' do
-    @recipe = Recipe.find(params[:id])
-    if @recipe.user_id == current_user.id
-      erb :'recipes/edit'
+    if logged_in?
+      @recipe = Recipe.find(params[:id])
+      if @recipe.user_id == current_user.id
+        erb :'recipes/edit'
+      else
+        erb :uhoh
+      end
     else
-      erb :uhoh
+      redirect to '/login'
     end
   end
 
@@ -37,7 +41,7 @@ class RecipesController < ApplicationController
       @recipe = Recipe.find(params[:id])
       if Recipe.last.id < params[:id].to_i
         erb :uhoh
-      elsif @recipe.user_id == current_user.id
+      elsif @recipe && @recipe.user_id == current_user.id
         @recipe = Recipe.find(params[:id])
         User.find(@recipe.user_id)
         erb :'recipes/show'
@@ -50,23 +54,30 @@ class RecipesController < ApplicationController
   end
 
   patch '/recipes/:id' do
-    @recipe = Recipe.find(params[:id])
-    if @recipe.user_id == current_user.id
-      @recipe.update(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], 
-                     tags: params[:tags], link: params[:link], color: params[:color])
-      redirect to "/recipes/#{@recipe.id}"
+    if logged_in?
+      @recipe = Recipe.find(params[:id])
+      if @recipe && @recipe.user_id == current_user.id
+        @recipe.update(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], tags: params[:tags], link: params[:link], color: params[:color])
+        redirect to "/recipes/#{@recipe.id}"
+      else
+        erb :uhoh
+      end
     else
-      redirect to "/uhoh"
+      redirect to "/login"
     end
   end
 
   delete '/recipes/:id' do
-    @recipe = Recipe.find(params[:id])
-    if @recipe.user_id == current_user.id
-      @recipe.destroy
-      redirect to '/recipes'
+    if logged_in?
+      @recipe = Recipe.find(params[:id])
+      if @recipe && @recipe.user_id == current_user.id
+        @recipe.destroy
+        redirect to '/recipes'
+      else
+        erb :uhoh
+      end
     else
-      erb :uhoh
+      redirect to "/login"
     end
   end
 
