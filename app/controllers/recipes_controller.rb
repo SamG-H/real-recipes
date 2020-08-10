@@ -3,30 +3,30 @@ class RecipesController < ApplicationController
   get "/recipes" do
     if logged_in?
       @user = User.find(session[:user_id])
-      erb :recipes
+      erb :'recipes/recipes'
     else
-      redirect "/login"
+      redirect to "/login"
     end
   end
 
   get "/recipes/new" do
     if logged_in?
-      erb :new
+      erb :'recipes/new'
     else
-      redirect "/login"
+      redirect to "/login"
     end
   end
 
   post "/recipes" do
     @recipe = Recipe.create(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], 
                             tags: params[:tags], link: params[:link], color: params[:color], user_id: session[:user_id])
-    redirect "/recipes"
+    redirect to "/recipes"
   end
 
   get '/recipes/:id/edit' do
     @recipe = Recipe.find(params[:id])
     if @recipe.user_id == current_user.id
-      erb :edit
+      erb :'recipes/edit'
     else
       erb :uhoh
     end
@@ -40,12 +40,12 @@ class RecipesController < ApplicationController
       elsif @recipe.user_id == current_user.id
         @recipe = Recipe.find(params[:id])
         User.find(@recipe.user_id)
-        erb :show
+        erb :'recipes/show'
       else
         erb :uhoh
       end
     else
-      redirect "/login"
+      redirect to "/login"
     end
   end
 
@@ -54,19 +54,19 @@ class RecipesController < ApplicationController
     if @recipe.user_id == current_user.id
       @recipe.update(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], 
                      tags: params[:tags], link: params[:link], color: params[:color])
-      redirect "/recipes/#{@recipe.id}"
+      redirect to "/recipes/#{@recipe.id}"
     else
-      redirect "/uhoh"
+      redirect to "/uhoh"
     end
   end
 
   delete '/recipes/:id' do
+    @recipe = Recipe.find(params[:id])
     if @recipe.user_id == current_user.id
-      @recipe = Recipe.find(params[:id])
       @recipe.destroy
-      redirect '/recipes'
+      redirect to '/recipes'
     else
-      redirect "/uhoh"
+      erb :uhoh
     end
   end
 
