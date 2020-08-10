@@ -28,7 +28,7 @@ class RecipesController < ApplicationController
     if @recipe.user_id == current_user.id
       erb :edit
     else
-      redirect "/uhoh"
+      erb :uhoh
     end
   end
 
