@@ -21,7 +21,6 @@ class RecipesController < ApplicationController
     if logged_in?
       @recipe = Recipe.new(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], tags: params[:tags], link: params[:link], color: params[:color], user_id: session[:user_id])
       @recipe.save
-      binding.pry
       redirect to "/recipes"
     else
       redirect to "/login"
