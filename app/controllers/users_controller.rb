@@ -5,16 +5,22 @@ class UsersController < ApplicationController
   end
 
   post "/signup" do
-    if (params[:username] == "" || params[:password] == "")
-      @error = "You must type in a username and a password"
-      erb :'users/signup'
-    elsif User.find_by(username: params[:username])
-      @error = "Username taken"
-      erb :'users/signup'
-    else
-      user = User.create(username: params[:username], password: params[:password])
+    user = User.new(username: params[:username], password: params[:password])
+    if user.save
       session[:user_id] = user.id
       redirect to "/recipes"
+    else
+      errorhash = user.errors.messages
+      if errorhash[:username] && errorhash[:password]
+        @error = "Username and password #{errorhash[:username][0]}"
+        erb :'users/signup'
+      elsif errorhash[:username]
+        @error = "Username #{errorhash[:username][0]}"
+        erb :'users/signup'
+      else
+        @error = "Password #{errorhash[:password][0]}"
+        erb :'users/signup'
+      end
     end
   end
 
