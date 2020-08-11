@@ -21,42 +21,32 @@
       <div class="navbar-item">
 	<div class="field is-grouped">
 	  <p class="control">
-	    <a href="/login" class="button" style="background-color: #25AC51">
-	      <span>Login</span>
+	    <a href="/signup" class="button is-success" style="background-color: #25AC51">
+	      <span>Sign Up</span>
 	    </a>
 	  </p>
 	  <p class="control">
-	    <a href="/signup" class="button" style="background-color: #F0983F">
-	      <span>Sign Up</span>
+	    <a href="/login" class="button">
+	      <span>Login</span>
 	    </a>
 	  </p>
 	</div>
       </div>
     </div>
     <% else %>
-    <div class="navbar-item">
-      <a href="/recipes" class="button is-primary">Recipes</a>
+    <div class="navbar-start">
+      <a href="/recipes" class="navbar-item">Recipes</a>
     </div>
     <div class="navbar-end">
       <div class="navbar-item">
-	<a href="/logout" class="button is-danger">Logout</a>
+	<a href="/logout" class="button is-danger" style="background-color: #E54B57">Logout</a>
       </div>
     </div>
     <% end %>
    
   </div>
 </nav>
-<!--
-<%if !logged_in? %>
-          <li><a href="/">Home</a></li>
-          <li style="float:right"><a href="/login">Login</a></li>
-          <li style="float:right"><a href="/signup">Sign Up</a></li>
-        <% else %>
-          <li style="float:right"><a href="/logout">Logout</a></li>
-          <li><a href="/recipes">Recipes</a></li>
-        <% end %>
-      </ul>
-    </div>-->
+
     <div class="wrapper">
     
       <%= yield %>
