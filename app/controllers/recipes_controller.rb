@@ -18,9 +18,12 @@ class RecipesController < ApplicationController
   end
 
   post "/recipes" do
-    @recipe = Recipe.create(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], 
-                            tags: params[:tags], link: params[:link], color: params[:color], user_id: session[:user_id])
-    redirect to "/recipes"
+    if logged_in?
+      @recipe = Recipe.create(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], tags: params[:tags], link: params[:link], color: params[:color], user_id: session[:user_id])
+      redirect to "/recipes"
+    else
+      redirect to "/login"
+    end
   end
 
   get '/recipes/:id/edit' do
