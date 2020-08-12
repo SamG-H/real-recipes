@@ -9,11 +9,11 @@
 </div>
 <div class="field is-grouped has-text-right">
   <div class="control">
-    <a href="/recipes/<%=@recipe.id%>/edit" class="button is-link">Edit Recipe</a>
+    <a href="/recipes/<%=@recipe.id%>/edit" class="button is-link is-light">Edit Recipe</a>
   </div>
   <div class="control">
     <form method="POST" action="/recipes/<%=@recipe.id%>">
-      <input type="submit" value="Delete Recipe" class="button is-danger">
+      <input type="submit" value="Delete Recipe" class="button is-danger is-light">
       <input id="hidden" type="hidden" name="_method" value="DELETE">
     </form>
   </div>

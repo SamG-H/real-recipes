@@ -1,4 +1,4 @@
-<h1>Add A New Recipe</h1>
+<h1 class="is-size-1">Add A New Recipe</h1>
 
 <form action="/recipes" method="POST">
   <div class="field">
@@ -9,50 +9,40 @@
   </div>
 
   <div class="field">
-    <label>Cooking Time:</label>
+    <label class="label">Cooking Time:</label>
     <div class="control">
       <input class="input" type="text" name="cook_time">
     </div>
   </div>
   
   <div class="field">
-    <label>Ingredients:</label>
+    <label class="label">Ingredients:</label>
     <div class="control">
       <input class="input" type="text" name="ingredients">
     </div>
   </div>
 
   <div class="field">
-    <label>Tags:</label>
+    <label class="label">Tags:</label>
     <div class="control">
       <input class="input" type="text" name="tags">
     </div>
   </div>
 
   <div class="field">
-    <label>Link to Recipe:</label>
+    <label class="label">Link to Recipe:</label>
     <div class="control">
       <input class="input" type="text" name="link">
     </div>
   </div>
   
-
-  <label>Background Color</label>
-  <input type="radio" name="color" id="red" value="red">Red</input>
-  <input type="radio" name="color" id="orange" value="orange">Orange</input>
-  <input type="radio" name="color" id="yellow" value="yellow">Yellow</input>
-  <input type="radio" name="color" id="green" value="green">Green</input>
-  <input type="radio" name="color" id="blue" value="blue">Blue</input>
-  <input type="radio" name="color" id="indigo" value="indigo">Indigo</input>
-  <input type="radio" name="color" id="violet" value="violet">Violet</input><bbr>
-    
-    <div class="field is-grouped">
-      <div class="control">
-	<input type="submit" class="button is-primary" value="Add Recipe">
-      </div>
-      <div class="control">
-	<input type="submit" name="submit" value="Cancel" class="button is-link is-light" formnovalidate="">
-      </div>
+  <div class="field is-grouped">
+    <div class="control">
+      <input type="submit" class="button is-link" value="Add Recipe">
     </div>
+    <div class="control">
+      <input type="submit" name="submit" value="Cancel" class="button is-link is-light" formnovalidate="">
+    </div>
+  </div>
 
 </form>
