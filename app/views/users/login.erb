@@ -1,7 +1,18 @@
-<h1>Log In To Your Account</h1>
-<h2 class="error"><%=@error%></h2>
+<div class="has-text-centered">
+<h1 class="is-size-1">Log In To Your Account</h1>
+<h2 class="has-text-danger is-size-2"><%=@error%></h2>
 <form action="/login" method="POST">
-    <input type="text" name="username" placeholder="Username:"><br>
-    <input type="password" name="password" placeholder="Password:"><br>
-    <input type="submit" value="Log In" class="yellow-button">
+    <div class="field">
+      <div class="control">
+	<input type="text" name="username" class="is-size-5" placeholder="Username:">
+      </div>
+      <div class="control">
+	<input type="password" name="password" class="is-size-5" placeholder="Password:">
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+	<input type="submit" value="Log In" class="button is-success">
+      </div>
+    </div>
 </form>

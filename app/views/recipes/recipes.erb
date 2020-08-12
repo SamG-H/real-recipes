@@ -1,11 +1,13 @@
-<h1 style="font-size: 50px">Hello <%=@user.username%>!</h1>
-<h2>Your Recipes</h2>
-<div class="recipe-grid-wrapper">
-    <%@user.recipes.each do |recipe|%>
-        <a href="/recipes/<%=recipe.id%>" class="recipe" style="background-color: <%=recipe.color if recipe.color%>">
-            <%=recipe.name%>
-        </a>
-    <% end %>
+<div class="has-text-centered">
+  <h1 class="is-size-1"><%=@user.username.capitalize%>'s Recipes</h1>
 </div>
-<br>
+<div class="container">
+    <%@user.recipes.each do |recipe|%>
+    <div class="tile is-vertical is-3">
+      <a href="/recipes/<%=recipe.id%>" style="background-color: <%=recipe.color if recipe.color%>">
+    </div>
+          <%=recipe.name%>
+        </a>
+	<% end %>
+</div>
 <p><a href="/recipes/new" class="yellow-button">Make A New Recipe</a></p>
