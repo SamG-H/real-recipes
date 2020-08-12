@@ -1,13 +1,17 @@
 <div class="has-text-centered">
   <h1 class="is-size-1"><%=@user.username.capitalize%>'s Recipes</h1>
 </div>
-<div class="container">
+<div class="columns is-multiline is-8">
     <%@user.recipes.each do |recipe|%>
-    <div class="tile is-vertical is-3">
-      <a href="/recipes/<%=recipe.id%>" style="background-color: <%=recipe.color if recipe.color%>">
+    <div class="column is-one-quarter has-text-centered">
+      <a href="/recipes/<%=recipe.id%>" class="is-size-4">
+        <%=recipe.name%>
+      </a>
     </div>
-          <%=recipe.name%>
-        </a>
-	<% end %>
+    <% end %>
 </div>
-<p><a href="/recipes/new" class="yellow-button">Make A New Recipe</a></p>
+<div class="has-text-centered">
+  <p>
+    <a href="/recipes/new" class="button is-primary">Make A New Recipe</a>
+  </p>
+</div>
