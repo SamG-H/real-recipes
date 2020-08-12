@@ -1,12 +1,20 @@
-<div style="background-color: <%=@recipe.color%>" class="recipe">
-<h1><%=@recipe.name%></h1>
-<p>Cooking Time: <%=@recipe.cook_time%></p>
-<p>Ingredients: <%=@recipe.ingredients%></p>
-<p>Tags: <%=@recipe.tags%></p>
-<p>Link to Recipe: <a href="<%=@recipe.link%>" target="_blank"><%=@recipe.link%></a></p>
-<p><a href="/recipes/<%=@recipe.id%>/edit" class="yellow-button">Edit Recipe</a></p>
-<form method="POST" action="/recipes/<%=@recipe.id%>">
-    <input type="submit" value="Delete Recipe" class="yellow-button">
-    <input id="hidden" type="hidden" name="_method" value="DELETE">
-</form>
+<div class="container has-text-centered">
+  <h1 class="is-size-1"><%=@recipe.name%></h1>
+</div>
+<div class="content">
+  <p class="is-size-4">Cooking Time: <%=@recipe.cook_time%></p>
+  <p class="is-size-4">Ingredients: <%=@recipe.ingredients%></p>
+  <p class="is-size-4">Tags: <%=@recipe.tags%></p>
+  <p class="is-size-4">Link to Recipe: <a href="<%=@recipe.link%>" target="_blank"><%=@recipe.link%></a></p>
+</div>
+<div class="field is-grouped has-text-right">
+  <div class="control">
+    <a href="/recipes/<%=@recipe.id%>/edit" class="button is-link">Edit Recipe</a>
+  </div>
+  <div class="control">
+    <form method="POST" action="/recipes/<%=@recipe.id%>">
+      <input type="submit" value="Delete Recipe" class="button is-danger">
+      <input id="hidden" type="hidden" name="_method" value="DELETE">
+    </form>
+  </div>
 </div>
