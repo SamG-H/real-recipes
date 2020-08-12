@@ -20,8 +20,12 @@ class RecipesController < ApplicationController
   post "/recipes" do
     if logged_in?
       @recipe = Recipe.new(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], tags: params[:tags], link: params[:link], color: params[:color], user_id: session[:user_id])
-      @recipe.save
-      redirect to "/recipes"
+      if @recipe.save
+        redirect to "/recipes"
+      else
+        @error = @recipe.errors.messages[:name][0]
+        erb :'recipes/new'
+      end
     else
       redirect to "/login"
     end
@@ -62,7 +66,13 @@ class RecipesController < ApplicationController
       @recipe = Recipe.find(params[:id])
       if @recipe && @recipe.user_id == current_user.id
         @recipe.update(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], tags: params[:tags], link: params[:link], color: params[:color])
-        redirect to "/recipes/#{@recipe.id}"
+        if @recipe.errors.messages.empty?
+          redirect to "/recipes/#{@recipe.id}"
+        else
+          @error = @recipe.errors.messages[:name][0]
+          @recipe = Recipe.find(params[:id])
+          erb :'recipes/edit'
+        end
       else
         erb :uhoh
       end

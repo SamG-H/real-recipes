@@ -1,10 +1,10 @@
 <h1 class="is-size-1">Add A New Recipe</h1>
-
+<h2 class="is-size-4 has-text-danger"><%="recipe name #{@error}" if @error%></h2>
 <form action="/recipes" method="POST">
   <div class="field">
     <label class="label">Recipe Name:</label>
     <div class="control">
-      <input class="input" type="text" name="name" required>
+      <input class="input" type="text" name="name">
     </div>
   </div>
 
@@ -35,13 +35,13 @@
       <input class="input" type="text" name="link">
     </div>
   </div>
-  
+
   <div class="field is-grouped">
     <div class="control">
       <input type="submit" class="button is-link" value="Add Recipe">
     </div>
     <div class="control">
-      <input type="submit" name="submit" value="Cancel" class="button is-link is-light" formnovalidate="">
+      <a href="/recipes" class="button is-link is-light">Cancel</a>
     </div>
   </div>
 
