@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
 
   get "/recipes" do
     if logged_in?
-      @user = User.find(session[:user_id])
+      @user = current_user
       erb :'recipes/recipes'
     else
       redirect to "/login"
@@ -19,7 +19,7 @@ class RecipesController < ApplicationController
 
   post "/recipes" do
     if logged_in?
-      @recipe = Recipe.new(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], tags: params[:tags], link: params[:link], color: params[:color], user_id: session[:user_id])
+      @recipe = Recipe.new(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], tags: params[:tags], link: params[:link], user_id: session[:user_id])
       if @recipe.save
         redirect to "/recipes"
       else
@@ -33,8 +33,8 @@ class RecipesController < ApplicationController
 
   get '/recipes/:id/edit' do
     if logged_in?
-      @recipe = Recipe.find(params[:id])
-      if @recipe.user_id == current_user.id
+      @recipe = Recipe.find_by(id: params[:id])
+      if @recipe && @recipe.user_id == current_user.id
         erb :'recipes/edit'
       else
         erb :uhoh
@@ -46,10 +46,8 @@ class RecipesController < ApplicationController
 
   get '/recipes/:id' do
     if logged_in?
-      @recipe = Recipe.find(params[:id])
-      if Recipe.last.id < params[:id].to_i
-        erb :uhoh
-      elsif @recipe && @recipe.user_id == current_user.id
+      @recipe = Recipe.find_by(id: params[:id])
+      if @recipe && @recipe.user_id == current_user.id
         @recipe = Recipe.find(params[:id])
         User.find(@recipe.user_id)
         erb :'recipes/show'
@@ -63,14 +61,14 @@ class RecipesController < ApplicationController
 
   patch '/recipes/:id' do
     if logged_in?
-      @recipe = Recipe.find(params[:id])
+      @recipe = Recipe.find_by(id: params[:id])
       if @recipe && @recipe.user_id == current_user.id
-        @recipe.update(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], tags: params[:tags], link: params[:link], color: params[:color])
+        @recipe.update(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], tags: params[:tags], link: params[:link])
         if @recipe.errors.messages.empty?
           redirect to "/recipes/#{@recipe.id}"
         else
           @error = @recipe.errors.messages[:name][0]
-          @recipe = Recipe.find(params[:id])
+          @recipe = Recipe.find_by(id: params[:id])
           erb :'recipes/edit'
         end
       else
@@ -83,7 +81,7 @@ class RecipesController < ApplicationController
 
   delete '/recipes/:id' do
     if logged_in?
-      @recipe = Recipe.find(params[:id])
+      @recipe = Recipe.find_by(id: params[:id])
       if @recipe && @recipe.user_id == current_user.id
         @recipe.destroy
         redirect to '/recipes'
