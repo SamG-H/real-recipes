@@ -6,7 +6,11 @@ class UsersController < ApplicationController
 
   post "/signup" do
     user = User.new(username: params[:username], password: params[:password])
-    if user.save
+    
+    if User.find_by(username: params[:username])
+      @error = "Username taken"
+      erb :'users/signup'
+    elsif user.save
       session[:user_id] = user.id
       redirect to "/recipes"
     else
