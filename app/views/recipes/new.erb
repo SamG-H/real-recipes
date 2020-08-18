@@ -1,5 +1,9 @@
 <h1 class="is-size-1">Add A New Recipe</h1>
-<h2 class="is-size-4 has-text-danger"><%="recipe name #{@error}" if @error%></h2>
+<%if @errors%>
+<%@errors.each do |error|%>
+<h2 class="is-size-3 has-text-danger"><%=error%></h2>
+<%end%>
+<%end%>
 <form action="/recipes" method="POST">
   <div class="field">
     <label class="label">Recipe Name:</label>

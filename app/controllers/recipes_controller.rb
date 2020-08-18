@@ -1,97 +1,69 @@
 class RecipesController < ApplicationController
 
   get "/recipes" do
-    if logged_in?
-      @user = current_user
-      erb :'recipes/recipes'
-    else
-      redirect to "/login"
-    end
+    redirect_to_login?
+    erb :'recipes/recipes'
   end
 
   get "/recipes/new" do
-    if logged_in?
-      erb :'recipes/new'
-    else
-      redirect to "/login"
-    end
+    redirect_to_login?
+    erb :'recipes/new'
   end
 
   post "/recipes" do
-    if logged_in?
-      @recipe = Recipe.new(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], tags: params[:tags], link: params[:link], user_id: session[:user_id])
-      if @recipe.save
-        redirect to "/recipes"
-      else
-        @error = @recipe.errors.messages[:name][0]
-        erb :'recipes/new'
-      end
+    redirect_to_login?
+    create_recipe
+    if @recipe.save
+      redirect to "/recipes"
     else
-      redirect to "/login"
+      @errors = @recipe.errors.full_messages
+      erb :'recipes/new'
     end
   end
 
   get '/recipes/:id/edit' do
-    if logged_in?
-      @recipe = Recipe.find_by(id: params[:id])
-      if @recipe && @recipe.user_id == current_user.id
-        erb :'recipes/edit'
-      else
-        erb :uhoh
-      end
-    else
-      redirect to '/login'
-    end
+    redirect_to_login?
+    set_recipe
+    redirect_if_not_authorized(@recipe)
+    erb :'recipes/edit'
   end
 
   get '/recipes/:id' do
-    if logged_in?
-      @recipe = Recipe.find_by(id: params[:id])
-      if @recipe && @recipe.user_id == current_user.id
-        @recipe = Recipe.find(params[:id])
-        User.find(@recipe.user_id)
-        erb :'recipes/show'
-      else
-        erb :uhoh
-      end
-    else
-      redirect to "/login"
-    end
+    redirect_to_login?
+    set_recipe
+    redirect_if_not_authorized(@recipe)
+    erb :'recipes/show'
   end
 
   patch '/recipes/:id' do
-    if logged_in?
-      @recipe = Recipe.find_by(id: params[:id])
-      if @recipe && @recipe.user_id == current_user.id
-        @recipe.update(name: params[:name], cook_time: params[:cook_time], ingredients: params[:ingredients], tags: params[:tags], link: params[:link])
-        if @recipe.errors.messages.empty?
-          redirect to "/recipes/#{@recipe.id}"
-        else
-          @error = @recipe.errors.messages[:name][0]
-          @recipe = Recipe.find_by(id: params[:id])
-          erb :'recipes/edit'
-        end
-      else
-        erb :uhoh
-      end
+    redirect_to_login?
+    set_recipe
+    redirect_if_not_authorized(@recipe)
+    params.delete('_method')
+    if @recipe.update(params)
+      redirect to "/recipes/#{@recipe.id}"
     else
-      redirect to "/login"
+      @errors = @recipe.errors.full_messages
+      erb :'recipes/edit'
     end
   end
 
   delete '/recipes/:id' do
-    if logged_in?
-      @recipe = Recipe.find_by(id: params[:id])
-      if @recipe && @recipe.user_id == current_user.id
-        @recipe.destroy
-        redirect to '/recipes'
-      else
-        erb :uhoh
-      end
-    else
-      redirect to "/login"
-    end
+    redirect_to_login
+    set_recipe
+    redirect_if_not_authorized(@recipe)
+    @recipe.destroy
+    redirect to '/recipes'
   end
 
+  private
+  def set_recipe
+    @recipe = Recipe.find_by(id: params[:id])
+  end
+
+  def create_recipe
+    @recipe = current_user.recipes.new(params)
+  end
+  
 end
 

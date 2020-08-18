@@ -27,6 +27,19 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find_by(id: session[:user_id])
     end
+
+    def redirect_to_login?
+      redirect to '/login' if !logged_in?
+    end
+
+    def authorized?(record)
+      record && record.user_id == current_user.id
+    end
+
+    def redirect_if_not_authorized(record)
+      redirect to '/recipes' if !authorized?(record)
+    end
+        
   end
 
 end

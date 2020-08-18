@@ -5,26 +5,13 @@ class UsersController < ApplicationController
   end
 
   post "/signup" do
-    user = User.new(username: params[:username], password: params[:password])
-    
-    if User.find_by(username: params[:username])
-      @error = "Username taken"
-      erb :'users/signup'
-    elsif user.save
-      session[:user_id] = user.id
+    @user = User.new(params)
+    if user.save
+      session[:user_id] = @user.id
       redirect to "/recipes"
     else
-      errorhash = user.errors.messages
-      if errorhash[:username] && errorhash[:password]
-        @error = "Username and password #{errorhash[:username][0]}"
-        erb :'users/signup'
-      elsif errorhash[:username]
-        @error = "Username #{errorhash[:username][0]}"
-        erb :'users/signup'
-      else
-        @error = "Password #{errorhash[:password][0]}"
-        erb :'users/signup'
-      end
+      @errors = @user.errors.full_messages
+      erb :'users/signup'
     end
   end
 
@@ -33,9 +20,9 @@ class UsersController < ApplicationController
   end
 
   post "/login" do
-    user = User.find_by(username: params[:username])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
+    set_user
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
       redirect to "/recipes"
     else
       @error = "Incorrect username or password"
@@ -46,6 +33,11 @@ class UsersController < ApplicationController
   get "/logout" do
     session.clear
     redirect to "/"
+  end
+
+  private
+  def set_user
+    @user = User.find_by(username: params[:username])
   end
   
 end

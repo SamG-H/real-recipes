@@ -1,5 +1,9 @@
 <h1 class="is-size-1">Update Recipe</h1>
-<h2 class="is-size-2 has-text-danger"><%="recipe name #{@error}" if @error%></h2>
+<%if @errors%>
+<%@errors.each do |error|%>
+<h2 class="is-size-3 has-text-danger"><%=error%></h2>
+<%end%>
+<%end%>
 <form action="/recipes/<%=@recipe.id%>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
 

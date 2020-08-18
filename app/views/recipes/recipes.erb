@@ -1,8 +1,8 @@
 <div class="has-text-centered">
-  <h1 class="is-size-1"><%=@user.username.capitalize%>'s Recipes</h1>
+  <h1 class="is-size-1"><%=current_user.username.capitalize%>'s Recipes</h1>
 </div>
 <div class="columns is-multiline is-4">
-    <%@user.recipes.each do |recipe|%>
+    <%current_user.recipes.each do |recipe|%>
     <div class="column is-one-quarter has-text-centered">
       <a href="/recipes/<%=recipe.id%>" class="is-size-5">
         <%=recipe.name%>
