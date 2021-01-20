@@ -8,5 +8,9 @@ ActiveRecord::Base.establish_connection(
   :database => "db/#{ENV['SINATRA_ENV']}.sqlite"
 )
 
+configure :development do
+  set :database, 'sqlite3:db/database.db'
+end
+
 require './app/controllers/application_controller'
 require_all 'app'

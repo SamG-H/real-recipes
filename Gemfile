@@ -15,6 +15,7 @@ gem 'pry'
 gem 'sysrandom'
 gem 'rake'
 gem 'sqlite3', '~> 1.3.6'
+gem 'faker'
 
 group :test do
   gem 'rspec'
