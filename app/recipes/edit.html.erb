@@ -1,9 +1,11 @@
 <h1 class="is-size-1">Update Recipe</h1>
+
 <%if @errors%>
-<%@errors.each do |error|%>
-<h2 class="is-size-3 has-text-danger"><%=error%></h2>
+  <%@errors.each do |error|%>
+    <p class="is-size-3 has-text-danger"><%=error%></p>
+  <%end%>
 <%end%>
-<%end%>
+
 <form action="/recipes/<%=@recipe.id%>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
 
@@ -20,29 +22,28 @@
       <input class="input" type="text" name="cook_time" value="<%=@recipe.cook_time%>">
     </div>
   </div>
+  
   <div class="field">
     <label class="label">Ingredients:</label>
     <div class="control">
       <input class="input" type="text" name="ingredients" value="<%=@recipe.ingredients%>">
     </div>
+  </div>
     
-    
-    <div class="field">
-      <label class="label">Tags:</label>
-      <div class="control">
-	<input class="input" type="text" name="tags" value="<%=@recipe.tags%>">
-      </div>
+  <div class="field">
+    <label class="label">Tags:</label>
+    <div class="control">
+	    <input class="input" type="text" name="tags" value="<%=@recipe.tags%>">
     </div>
+  </div>
     
 
-    <div class="field">
-      <label class="label">Link to Recipe:</label>
-      <div class="control">
-	<input class="input" type="text" name="link" value="<%=@recipe.link%>">
-      </div>
+  <div class="field">
+    <label class="label">Link to Recipe:</label>
+    <div class="control">
+      <input class="input" type="text" name="link" value="<%=@recipe.link%>">
     </div>
-
-
+  </div>
 
     <input type="submit" value="Update Recipe" class="button is-link is-light">
 </form>

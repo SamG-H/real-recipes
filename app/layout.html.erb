@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+
+    <title>Real Recipes</title>
+    <link rel="icon" href="/images/cutlery.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css" integrity="sha512-ADrqa2PY1TZtb/MoLZIZu/Z/LlPaWQeDMBV73EMwjGam43/JJ5fqW38Rq8LJOVGCDfrJeOMS3Q/wRUVzW5DkjQ==" crossorigin="anonymous" />
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+	      <a class="navbar-item" href="/">
+	      <img src="/images/cutlery.svg" alt="Real Recipes: All of your recipes in one place" width="112" height="28"></a>
+      </div>
+      <%if !logged_in? %>
+        <div class="navbar-end">
+	        <div class="navbar-item">
+	          <div class="field is-grouped">
+	            <p class="control">
+                <a href="/signup" class="button is-success">
+                  <span>Sign Up</span>
+                </a>
+	            </p>
+	            <p class="control">
+	              <a href="/login" class="button">
+		              <span>Login</span>
+	              </a>
+	            </p>
+	          </div>
+	        </div>
+        </div>
+      <% else %>
+        <div class="navbar-start">
+	        <a href="/recipes" class="navbar-item">Recipes</a>
+        </div>
+        <div class="navbar-end">
+	        <a href="/logout" class="navbar-item">Logout</a>
+        </div>
+      <% end %>
+    </nav>
+
+    <div class="container">
+
+      <%= yield %>
+
+    </div>
+  </body>
+</html>

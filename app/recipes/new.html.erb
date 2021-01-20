@@ -1,14 +1,16 @@
 <h1 class="is-size-1">Add A New Recipe</h1>
+
 <%if @errors%>
-<%@errors.each do |error|%>
-<h2 class="is-size-3 has-text-danger"><%=error%></h2>
+  <%@errors.each do |error|%>
+    <p class="is-size-3 has-text-danger"><%=error%></p>
+  <%end%>
 <%end%>
-<%end%>
+
 <form action="/recipes" method="POST">
   <div class="field">
     <label class="label">Recipe Name:</label>
     <div class="control">
-      <input class="input" type="text" name="name">
+      <input class="input" type="text" name="name" required>
     </div>
   </div>
 

@@ -1,15 +1,17 @@
 <div class="has-text-centered">
   <h1 class="is-size-1"><%=current_user.username.capitalize%>'s Recipes</h1>
 </div>
+
 <div class="columns is-multiline is-4">
-    <%current_user.recipes.each do |recipe|%>
+  <%current_user.recipes.each do |recipe|%>
     <div class="column is-one-quarter has-text-centered">
-      <a href="/recipes/<%=recipe.id%>" class="is-size-5">
+      <a href="/recipes/<%=recipe.id%>" class="is-size-3">
         <%=recipe.name%>
       </a>
     </div>
-    <% end %>
+  <% end %>
 </div>
+
 <div class="has-text-centered">
   <p>
     <a href="/recipes/new" class="button is-primary">Add A New Recipe</a>
