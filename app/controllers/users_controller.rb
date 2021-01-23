@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   post "/signup" do
     @user = User.new(params)
-    if user.save
+    if @user.save
       session[:user_id] = @user.id
       redirect to "/recipes"
     else
